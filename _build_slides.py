@@ -336,17 +336,17 @@ SLIDES = [
     h2("Research: explore fast, trust nothing yet"),
     two(
       shot("gemini_home.jpg", "gemini.google.com",
-           "Use Gemini to explore the topic fast — then treat every claim as unverified.", crop=True) +
-      viz_stage_steps(1, PEN,
-        "ask Gemini with the|research prompt →",
-        "pick 5+ facts, note the|source for each",
-        "save prompt + notes|(they go in your PDF)"),
+           "Use Gemini to explore the topic fast — then treat every claim as unverified.", crop=True),
       prompt("I'm a 2nd-year CSE student researching 'AI in healthcare' for a seminar. "
              "Give me: the 5 most important subtopics, 3 real applications, and the "
              "key debates. For each, name a source I can verify.", "research") +
       prompt("What are the strongest arguments AGAINST deploying AI diagnosis "
              "systems? Cite where each argument comes from.", "counter-view"),
     ),
+    viz_stage_steps(1, PEN,
+      "ask Gemini with the|research prompt →",
+      "pick 5+ facts, note the|source for each",
+      "save prompt + notes|(they go in your PDF)"),
   ),
   # 6 — stage 2 organize
   slide(
