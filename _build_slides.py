@@ -217,22 +217,10 @@ SLIDES = [
     viz_pipeline(),
     muted("Memorise this picture — it's the whole session. Each stage produces an artifact the next stage consumes."),
   ),
-  # 4 — the toolkit, real
-  slide(
-    eyebrow("The toolkit · the real thing"),
-    h2("Four tools you already know"),
-    '<div class="cards c2">'
-    + shot("gemini_home.jpg", "gemini.google.com", "Gemini — open-world research &amp; brainstorming.", crop=True)
-    + shot("nblm_upload.jpg", "notebooklm.google.com", "NotebookLM — grounded answers from YOUR sources.", crop=True)
-    + shot("gamma_step_prompt.jpg", "gamma.app", "Gamma — prompt → designed deck.", crop=True)
-    + shot("figma_step2_layout.jpg", "figma.com", "Figma — wireframes, mockups, prototypes.", crop=True)
-    + '</div>',
-    muted("Sessions 2–3 covered each tool in depth — today they work as a relay team."),
-  ),
   # 5 — stage 1 research
   slide(
     eyebrow("Stage 1 · Research — Gemini"),
-    h2("Research: cast a wide net"),
+    h2("Research: explore fast, trust nothing yet"),
     two(
       shot("gemini_home.jpg", "gemini.google.com",
            "Use Gemini to explore the topic fast — then treat every claim as unverified.", crop=True) +
@@ -247,7 +235,7 @@ SLIDES = [
   # 6 — stage 2 organize
   slide(
     eyebrow("Stage 2 · Organize — NotebookLM"),
-    h2("Organize: make it yours, grounded"),
+    h2("Organize: keep only what's checked"),
     two(
       shot("nblm_citations.jpg", "notebooklm.google.com → chat",
            "Every answer cites your uploaded sources — click and check the passage."),
@@ -260,7 +248,7 @@ SLIDES = [
   # 7 — stage 3 present
   slide(
     eyebrow("Stage 3 · Present — Gamma"),
-    h2("Present: from notes to deck"),
+    h2("Present: your notes become a deck"),
     two(
       shot("gamma_step_prompt.jpg", "gamma.app → Generate",
            "Paste your NotebookLM summary as the outline — Gamma designs the deck."),
@@ -273,7 +261,7 @@ SLIDES = [
   # 8 — stage 4 design
   slide(
     eyebrow("Stage 4 · Design — Figma"),
-    h2("Design: one strong visual asset"),
+    h2("Design: one strong visual"),
     two(
       shot("figma_step2_layout.jpg", "figma.com → canvas",
            "Block out a poster or title screen for your project — frame, boxes, text."),
@@ -288,9 +276,9 @@ SLIDES = [
     eyebrow("Ethics · visualize it"),
     h2("Verify before you use"),
     viz_verify(),
-    p("AI tools are confident even when wrong. The rule is simple: <b>a claim without "
-      "a checked source doesn't enter your project</b> — NotebookLM's citations make "
-      "this easy, Gemini's answers need you to do the checking."),
+    p("AI sounds confident even when it's wrong. One simple rule: <b>if you haven't "
+      "checked the source, it doesn't go in your project.</b> NotebookLM shows its sources; "
+      "for Gemini, YOU find and check them."),
   ),
   # 10 — integrity
   slide(
@@ -307,29 +295,19 @@ SLIDES = [
     flash("End your project with an <b>AI contribution statement</b> — one paragraph: "
           "<i>which tool did what, and what you did yourself</i>. That's the professional standard."),
   ),
-  # 11 — mini project brief
-  slide(
-    eyebrow("Hands-on · the mini project"),
-    h2("Your mini project"),
-    two(
-      p("Pick <b>one topic</b> from your branch (or one assigned) — e.g. "
-        "<i>AI in healthcare · renewable microgrids · quantum computing basics · "
-        "smart-city traffic</i> — and run it through all four stages.") +
-      tick([
-        "Demonstrates <b>prompt engineering</b> — save your best prompts as you go.",
-        "Uses <b>all four tools</b> — each stage's artifact goes in the submission.",
-        "Everything factual is <b>verified &amp; cited</b>.",
-      ]),
-      flash("This is the <b>assessment</b> for the whole programme — it shows you can "
-            "run research → organization → presentation → design, responsibly, on your own."),
-    ),
-  ),
   # 12 — project process timeline
   slide(
-    eyebrow("Hands-on · visualize the process"),
-    h2("The process, end to end"),
+    eyebrow("Hands-on · the mini project"),
+    h2("Your mini project — the process"),
     viz_timeline(),
-    muted("Falling behind? Shrink the artifact, not the verification — a smaller, cited project beats a big, unchecked one."),
+    two(
+      p("Pick <b>one topic</b> from your branch — e.g. <i>AI in healthcare · renewable "
+        "microgrids · smart-city traffic</i> — and run it through all four stages. "
+        "<b>Save your best prompt at every stage</b> — they go in your submission.") ,
+      flash("This mini project is the <b>assessment for the whole programme</b>. "
+            "Falling behind? Shrink the artifact, not the verification — a small, "
+            "cited project beats a big, unchecked one."),
+    ),
   ),
   # 13 — assessment rubric
   slide(
@@ -371,25 +349,16 @@ SLIDES = [
     ),
     flash("Order them as listed, one PDF → <b>RollNo_Name_Session4.pdf</b>"),
   ),
-  # 16 — expected impact
-  slide(
-    eyebrow("Why this matters"),
-    h2("What this programme leaves you with"),
-    cards([
-      ("skill", "Research", "You can go from zero to an informed view fast — and check what you're told."),
-      ("skill", "Productivity", "Hours of searching, organizing and formatting compressed into minutes."),
-      ("skill", "Deliverables", "Professional decks, notes and designs — for every course from here on."),
-      ("skill", "Ethics", "You verify, cite and disclose — an AI-enabled learner others can trust."),
-    ], cols=4),
-    muted("Use this workflow in your next real assignment — that's where it compounds."),
-  ),
   # 17 — wrap
   slide(
     handoff("Four tools. One workflow. Your project.",
             "Research with Gemini · organize with NotebookLM · present with Gamma · "
             "design with Figma — verify, cite and disclose throughout.",
             "gemini.google.com · notebooklm.google.com · gamma.app · figma.com"),
-    muted("Submission deadline as announced in class — ask your doubts now or during the lab."),
+    tags(["you can research &amp; fact-check", "hours of busywork → minutes",
+          "professional decks &amp; designs", "AI use others can trust"]),
+    muted("That's what this programme leaves you with. Use the workflow in your next real "
+          "assignment — that's where it compounds. Submission deadline as announced in class."),
     cls="handoff-slide",
   ),
 ]

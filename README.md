@@ -22,13 +22,12 @@ present the workflow first, then run the assessed mini project.
 |------|--------|---------|
 | Motivation & objectives | 1–2 | Why tools must chain together; session outcomes |
 | The workflow | 3 | **Master pipeline visualization** — Research → Organize → Present → Design with the ethics band |
-| The toolkit | 4 | All four tools with real screenshots |
-| The four stages | 5–8 | One slide per stage — real tool screens, steal-these prompts, and each stage's deliverable |
-| Ethics | 9–10 | **Verification-loop visualization**; citations, integrity, the AI contribution statement |
-| Mini project | 11–12 | The brief + **process-timeline visualization** (stage · tool · time · deliverable) |
-| Assessment | 13 | **Visual rubric** — grading weights as bars |
-| Reflection & submission | 14–15 | Responsible-AI reflection questions; the one-PDF checklist |
-| Impact & wrap | 16–17 | What the programme leaves students with |
+| The four stages | 4–7 | One slide per stage — real tool screens, steal-these prompts, each stage's deliverable |
+| Ethics | 8–9 | **Verification-loop visualization**; citations, integrity, the AI contribution statement |
+| Mini project | 10 | Brief + **process-timeline visualization** (stage · tool · time · deliverable) |
+| Assessment | 11 | **Visual rubric** — grading weights as bars |
+| Reflection & submission | 12–13 | Responsible-AI reflection questions; the one-PDF checklist |
+| Wrap | 14 | Recap + what the programme leaves students with |
 
 Every concept is drawn, not just told: the pipeline, the verification loop, the project
 timeline and the rubric are all custom diagrams; every tool stage carries **real
