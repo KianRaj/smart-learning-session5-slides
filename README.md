@@ -1,10 +1,10 @@
-# Session 4 — The Integrated AI Workflow (capstone)
+# Session 5 — The Integrated AI Workflow (capstone)
 
 Presentation slides + mini-project assessment for the **Smart Learning** series. Built
 as a lightweight, self-contained slide deck (a web page, **not** a notebook) so you can
 present the workflow first, then run the assessed mini project.
 
-> **Live slides:** https://kianraj.github.io/smart-learning-session4-slides/
+> **Live slides:** https://kianraj.github.io/smart-learning-session5-slides/
 >
 > **Present locally:** open [`index.html`](index.html) in any browser.
 
@@ -14,7 +14,7 @@ present the workflow first, then run the assessed mini project.
 |---------|-------|-------------|
 | 2 | Smart Learning with Google Gemini & NotebookLM | https://kianraj.github.io/smart-learning-session2-slides/ |
 | 3 | AI for Presentations & Design (Gamma & Figma AI) | https://kianraj.github.io/smart-learning-session3-slides/ |
-| 4 | The Integrated AI Workflow — capstone & assessment | https://kianraj.github.io/smart-learning-session4-slides/ |
+| 4 | The Integrated AI Workflow — capstone & assessment | https://kianraj.github.io/smart-learning-session5-slides/ |
 
 ## What's inside
 
@@ -48,7 +48,7 @@ Students pick one topic and run it through all four stages (~70 min + 10 min ref
 3. **Present (Gamma, 20 min)** — 8–10 slide deck exported as PDF
 4. **Design (Figma, 15 min)** — poster / title-screen mockup
 
-**Submit** one PDF (`RollNo_Name_Session4.pdf`): topic + 5 best prompts, research notes
+**Submit** one PDF (`RollNo_Name_Session5.pdf`): topic + 5 best prompts, research notes
 with sources, NotebookLM screenshot + cited outputs, Gamma link + PDF, Figma screenshot,
 an **AI contribution statement**, and a **reflection on responsible AI use**.
 
@@ -58,7 +58,7 @@ presentation 20% · design 10% · integrity + reflection 15% (visualized on slid
 ## Files
 
 ```
-smart-learning-session4-slides/
+smart-learning-session5-slides/
 ├── index.html          <- the presentation (open / share this)
 ├── assets/
 │   ├── img/             <- real tool screenshots (self-hosted)
