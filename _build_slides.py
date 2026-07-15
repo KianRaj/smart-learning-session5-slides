@@ -2,7 +2,7 @@
 """
 Build the lecture slide deck for:
 
-    Session 5 — The Integrated AI Workflow (capstone)
+    Session 4 — The Integrated AI Workflow (capstone)
 
 Content lives here (one place). Run this to regenerate the HTML:
 
@@ -29,7 +29,7 @@ PUR = "#7C4DFF"
 def slide(*body, cls=""):
     return f'<section class="slide {cls}"><div class="inner">' + "".join(body) + "</div></section>"
 
-def eyebrow(tag):   return f'<p class="eyebrow">Session 5 <span class="dot">•</span> {tag}</p>'
+def eyebrow(tag):   return f'<p class="eyebrow">Session 4 <span class="dot">•</span> {tag}</p>'
 def h1(t):   return f"<h1>{t}</h1>"
 def h2(t):   return f"<h2>{t}</h2>"
 def lead(t): return f'<p class="lead">{t}</p>'
@@ -278,7 +278,7 @@ def viz_pdf():
     s = f'<rect x="46" y="26" width="560" height="282" rx="10" fill="#EFEDE5"/>'
     s += f'<rect x="36" y="18" width="560" height="282" rx="10" fill="#F6F4EC" stroke="{LINE}"/>'
     s += f'<rect x="26" y="10" width="560" height="288" rx="10" fill="#fff" stroke="{LINE}" stroke-width="1.6"/>'
-    s += f'<text x="50" y="40" font-size="13" fill="{INK}" font-weight="700" class="mono">RollNo_Name_Session5.pdf</text>'
+    s += f'<text x="50" y="40" font-size="13" fill="{INK}" font-weight="700" class="mono">RollNo_Name_Session4.pdf</text>'
     y = 66
     for n, txt, col in items:
         s += f'<circle cx="{58}" cy="{y-5}" r="11" fill="{col}"/>'
@@ -459,7 +459,7 @@ SLIDES = [
     two(
       viz_pdf(),
       flash("Seven sections, <b>in this order</b>, exported as one PDF: "
-            "<b>RollNo_Name_Session5.pdf</b><br><br>Tip: keep a running Google Doc open "
+            "<b>RollNo_Name_Session4.pdf</b><br><br>Tip: keep a running Google Doc open "
             "from Stage 1 — paste each artifact in as you finish it, and the submission "
             "builds itself."),
     ),
@@ -487,11 +487,11 @@ def page():
            '<button class="down" title="Next (↓)">↓</button></div>')
     chrome = ('<div class="margin-line"></div><div class="progress"></div>'
               '<div class="counter"></div>'
-              '<div class="brand">KIET · Smart Learning · Session 5</div>' + nav)
+              '<div class="brand">KIET · Smart Learning · Session 4</div>' + nav)
     return f"""<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Session 5 — The Integrated AI Workflow</title>
+<title>Session 4 — The Integrated AI Workflow</title>
 <meta name="description" content="Capstone: chain Gemini, NotebookLM, Gamma and Figma into one ethical academic workflow.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
