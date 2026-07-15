@@ -177,6 +177,118 @@ def viz_timeline():
     svg = f'<svg viewBox="0 0 {20+4*w} 170">{s}</svg>'
     return viz(svg, "~70 minutes of tool time + 10 minutes for the reflection. Each stage ends with something you can show.")
 
+
+def viz_chain():
+    """Tools used separately vs chained into one workflow."""
+    s = _defs()
+    cols = [PEN, RED, GRN, PUR]
+    names = ["Gemini", "NotebookLM", "Gamma", "Figma"]
+    # left: scattered tools, 4 disconnected outputs
+    for i, (n, c) in enumerate(zip(names, cols)):
+        x = 30 + (i % 2) * 150; y = 40 + (i // 2) * 66
+        s += f'<rect x="{x}" y="{y}" width="130" height="40" rx="9" fill="#fff" stroke="{c}" stroke-width="1.6"/>'
+        s += f'<text x="{x+65}" y="{y+25}" text-anchor="middle" font-size="12.5" fill="{INK}">{n}</text>'
+    s += f'<text x="170" y="185" text-anchor="middle" font-size="12.5" fill="{MUT}" class="mono">used separately → 4 loose outputs</text>'
+    # divider
+    s += f'<line x1="360" y1="30" x2="360" y2="190" stroke="{LINE}" stroke-width="2" stroke-dasharray="6 5"/>'
+    # right: chained
+    x = 395
+    for i, (n, c) in enumerate(zip(names, cols)):
+        s += f'<rect x="{x}" y="70" width="96" height="40" rx="9" fill="{c}"/>'
+        s += f'<text x="{x+48}" y="95" text-anchor="middle" font-size="12" fill="#fff" font-weight="600">{n}</text>'
+        if i < 3:
+            s += _arrow(x+98, 90, x+114, 90, INK, "aw")
+        x += 118
+    s += f'<text x="630" y="185" text-anchor="middle" font-size="12.5" fill="{MUT}" class="mono">chained → ONE finished project</text>'
+    svg = f'<svg viewBox="0 0 880 205">{s}</svg>'
+    return viz(svg, "Same four tools. Alone they give you pieces; chained they give you a project.")
+
+def viz_stage_steps(n, col, a, b, c):
+    """A 3-step hands-on strip for one project stage."""
+    s = _defs()
+    x = 14
+    for i, txt in enumerate([a, b, c]):
+        w = 262
+        s += f'<rect x="{x}" y="18" width="{w}" height="52" rx="10" fill="#fff" stroke="{col}" stroke-width="1.5"/>'
+        s += f'<circle cx="{x+24}" cy="{44}" r="13" fill="{col}"/>'
+        s += f'<text x="{x+24}" y="{49}" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">{i+1}</text>'
+        lines = txt.split("|")
+        if len(lines) == 1:
+            s += f'<text x="{x+46}" y="{49}" font-size="12.5" fill="{INK}">{lines[0]}</text>'
+        else:
+            s += f'<text x="{x+46}" y="{41}" font-size="12" fill="{INK}">{lines[0]}</text>'
+            s += f'<text x="{x+46}" y="{57}" font-size="12" fill="{INK}">{lines[1]}</text>'
+        if i < 2:
+            s += _arrow(x+w+3, 44, x+w+17, 44, INK, "aw")
+        x += w + 20
+    svg = f'<svg viewBox="0 0 {x} 84">{s}</svg>'
+    return viz(svg, f"Hands-on, stage {n} — three moves and you're done.")
+
+def viz_statement():
+    """A worked example of the AI contribution statement, as a document snippet."""
+    s = f'<rect x="20" y="14" width="700" height="196" rx="12" fill="#fff" stroke="{LINE}" stroke-width="1.6"/>'
+    s += f'<rect x="20" y="14" width="700" height="38" rx="12" fill="#EFEDE5"/>'
+    s += f'<rect x="20" y="33" width="700" height="19" fill="#EFEDE5"/>'
+    s += f'<text x="44" y="39" font-size="13" fill="{INK}" font-weight="700" class="mono">AI CONTRIBUTION STATEMENT — example</text>'
+    lines = [
+        ("Gemini", PEN,  "suggested subtopics and 3 applications — I verified each against the sources."),
+        ("NotebookLM", RED, "generated the summary and MCQs from my uploaded sources (citations checked)."),
+        ("Gamma", GRN, "produced the first draft of the deck — I rewrote the text and cut 4 slides."),
+        ("Figma", PUR, "— I designed the poster myself, using AI only to fill placeholder text."),
+        ("Me", INK, "chose the topic, checked every fact, wrote the conclusions and this statement."),
+    ]
+    y = 78
+    for who, col, txt in lines:
+        s += f'<rect x="44" y="{y-15}" width="94" height="22" rx="11" fill="{col}"/>'
+        s += f'<text x="91" y="{y}" text-anchor="middle" font-size="11" fill="#fff" font-weight="600">{who}</text>'
+        s += f'<text x="150" y="{y}" font-size="12.5" fill="{INK}">{txt}</text>'
+        y += 30
+    svg = f'<svg viewBox="0 0 740 224">{s}</svg>'
+    return viz(svg, "Copy this shape: one line per tool saying what it did — and one line for what YOU did.")
+
+def viz_reflection():
+    """Two panels: what AI did vs what you did — the honest split."""
+    def panel(x, title, col, items):
+        t = f'<rect x="{x}" y="16" width="330" height="168" rx="12" fill="#fff" stroke="{col}" stroke-width="2"/>'
+        t += f'<text x="{x+20}" y="46" font-size="14.5" fill="{INK}" font-weight="700">{title}</text>'
+        yy = 76
+        for it in items:
+            t += f'<circle cx="{x+26}" cy="{yy-4}" r="3" fill="{col}"/>'
+            t += f'<text x="{x+40}" y="{yy}" font-size="12.5" fill="{INK}">{it}</text>'
+            yy += 30
+        return t
+    s = panel(20, "What AI did", PEN,
+              ["fast drafts &amp; summaries", "layouts, themes, visuals", "MCQs &amp; study assets"])
+    s += panel(390, "What YOU did", RED,
+              ["chose &amp; framed the topic", "verified every claim", "rewrote, cut, decided"])
+    s += f'<text x="370" y="105" text-anchor="middle" font-size="22" fill="{MUT}">+</text>'
+    svg = f'<svg viewBox="0 0 740 200">{s}</svg>'
+    return viz(svg, "Your reflection is just this picture in sentences — honest on both sides.")
+
+def viz_pdf():
+    """The submission as one ordered document stack."""
+    items = [("1", "Topic + your 5 best prompts", PEN),
+             ("2", "Gemini research notes, with sources", PEN),
+             ("3", "NotebookLM screenshot + cited summary + 5 MCQs", RED),
+             ("4", "Gamma deck — share link + PDF export", GRN),
+             ("5", "Figma mockup screenshot", PUR),
+             ("6", "AI contribution statement", INK),
+             ("7", "Reflection on responsible AI use", INK)]
+    # back sheets
+    s = f'<rect x="46" y="26" width="560" height="282" rx="10" fill="#EFEDE5"/>'
+    s += f'<rect x="36" y="18" width="560" height="282" rx="10" fill="#F6F4EC" stroke="{LINE}"/>'
+    s += f'<rect x="26" y="10" width="560" height="288" rx="10" fill="#fff" stroke="{LINE}" stroke-width="1.6"/>'
+    s += f'<text x="50" y="40" font-size="13" fill="{INK}" font-weight="700" class="mono">RollNo_Name_Session4.pdf</text>'
+    y = 66
+    for n, txt, col in items:
+        s += f'<circle cx="{58}" cy="{y-5}" r="11" fill="{col}"/>'
+        s += f'<text x="{58}" y="{y-1}" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">{n}</text>'
+        s += f'<text x="{80}" y="{y}" font-size="13" fill="{INK}">{txt}</text>'
+        y += 33
+    svg = f'<svg viewBox="0 0 640 316">{s}</svg>'
+    return viz(svg, "One PDF, seven sections, in this order — grading follows the same order.")
+
+
 # ============================================================
 #  SLIDES
 # ============================================================
@@ -195,6 +307,7 @@ SLIDES = [
   slide(
     eyebrow("Why & what"),
     h2("No tool works alone"),
+    viz_chain(),
     two(
       p("Real academic work isn't “use one AI tool”. It's a <b>chain</b>: research "
         "feeds organization, organization feeds the presentation, the presentation "
@@ -224,7 +337,10 @@ SLIDES = [
     two(
       shot("gemini_home.jpg", "gemini.google.com",
            "Use Gemini to explore the topic fast — then treat every claim as unverified.", crop=True) +
-      flash("<b>Stage output:</b> 5+ key facts / ideas — each with a source you can check."),
+      viz_stage_steps(1, PEN,
+        "ask Gemini with the|research prompt →",
+        "pick 5+ facts, note the|source for each",
+        "save prompt + notes|(they go in your PDF)"),
       prompt("I'm a 2nd-year CSE student researching 'AI in healthcare' for a seminar. "
              "Give me: the 5 most important subtopics, 3 real applications, and the "
              "key debates. For each, name a source I can verify.", "research") +
@@ -242,8 +358,10 @@ SLIDES = [
       shot("nblm_studio.jpg", "notebooklm.google.com → Studio",
            "One-click study assets from the sources you collected in Stage 1."),
     ),
-    flash("<b>Stage output:</b> a notebook with your sources + a cited summary and 5 MCQs. "
-          "Prompt pattern: <i>“From my sources only, …”</i>"),
+    viz_stage_steps(2, RED,
+        "upload your Stage-1|sources → let it index",
+        "Studio: summary · chat:|5 MCQs — check citations",
+        "screenshot notebook,|save outputs"),
   ),
   # 7 — stage 3 present
   slide(
@@ -255,8 +373,10 @@ SLIDES = [
       shot("gamma_step_images.jpg", "gamma.app → image source",
            "Pick visuals per card — AI images, web images or illustrations."),
     ),
-    flash("<b>Stage output:</b> an 8–10 slide deck exported as PDF. One idea per slide; "
-          "the facts come from Stage 2, already verified."),
+    viz_stage_steps(3, GRN,
+        "paste your cited summary|→ Generate",
+        "pick a theme, one idea +|one visual per slide",
+        "export PDF +|copy the share link"),
   ),
   # 8 — stage 4 design
   slide(
@@ -268,8 +388,10 @@ SLIDES = [
       shot("figma_step3_connect.jpg", "figma.com → Prototype",
            "Optional stretch: wire two screens together into a clickable flow."),
     ),
-    flash("<b>Stage output:</b> a title-screen / poster mockup (screenshot it). "
-          "Reuse your deck's colours so the project feels like one thing."),
+    viz_stage_steps(4, PUR,
+        "press F → frame|(pick a size)",
+        "block out title, image,|button — then style it",
+        "screenshot the mockup|(reuse deck colours)"),
   ),
   # 9 — verification
   slide(
@@ -292,8 +414,7 @@ SLIDES = [
               "Don't submit AI output unread; don't invent or trust uncited facts; don't upload "
               "confidential material; don't present AI work as entirely your own.")], cols=1),
     ),
-    flash("End your project with an <b>AI contribution statement</b> — one paragraph: "
-          "<i>which tool did what, and what you did yourself</i>. That's the professional standard."),
+    viz_statement(),
   ),
   # 12 — project process timeline
   slide(
@@ -320,34 +441,28 @@ SLIDES = [
   slide(
     eyebrow("Hands-on · reflection"),
     h2("Reflection: responsible AI usage"),
-    p("Finish with <b>5–8 sentences</b> answering:"),
-    tick([
-      "Where did AI <b>save you time</b> — and where did it <b>mislead</b> you?",
-      "Which claims did you have to <b>correct or discard</b> after verification?",
-      "What did <b>you</b> contribute that the tools could not?",
-      "Would your project pass an oral exam — can you <b>defend every slide</b>?",
-    ]),
-    flash("Honest reflections score higher than perfect-sounding ones — the point is "
-          "showing you <b>stayed in charge</b> of the tools."),
+    two(
+      viz_reflection(),
+      tick([
+        "Where did AI <b>save time</b> — and where did it <b>mislead</b> you?",
+        "Which claims did you <b>correct or discard</b>?",
+        "What did <b>you</b> add that the tools couldn't?",
+        "Could you <b>defend every slide</b> in an oral exam?",
+      ]),
+    ),
+    muted("Write 5–8 honest sentences. Honest beats perfect — show you stayed in charge of the tools."),
   ),
   # 15 — submission
   slide(
     eyebrow("Deliverable"),
     h2("What to submit — one PDF"),
     two(
-      tick([
-        "Topic + your <b>5 best prompts</b> (one per stage minimum)",
-        "Gemini research notes <b>with sources</b>",
-        "NotebookLM screenshot + cited summary + 5 MCQs",
-        "Gamma deck <b>share link + PDF export</b>",
-      ]),
-      tick([
-        "Figma mockup screenshot",
-        "<b>AI contribution statement</b> (one paragraph)",
-        "<b>Reflection</b> on responsible AI use (5–8 sentences)",
-      ]),
+      viz_pdf(),
+      flash("Seven sections, <b>in this order</b>, exported as one PDF: "
+            "<b>RollNo_Name_Session4.pdf</b><br><br>Tip: keep a running Google Doc open "
+            "from Stage 1 — paste each artifact in as you finish it, and the submission "
+            "builds itself."),
     ),
-    flash("Order them as listed, one PDF → <b>RollNo_Name_Session4.pdf</b>"),
   ),
   # 17 — wrap
   slide(
